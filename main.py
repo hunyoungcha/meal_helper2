@@ -1,4 +1,5 @@
 #메인 gui 띄우는 파일
+#이거 실행하면 됨
 
 import tkinter as tk
 from tkinter import filedialog
