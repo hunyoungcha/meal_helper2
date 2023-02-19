@@ -1,10 +1,6 @@
-g=[['123','1233'],
-    ['','234']]
+from openpyxl import Workbook
+from openpyxl import load_workbook
 
+wb=load_workbook('dataset/1월 조리지시서 지역아동센터(만 6_11세-점심(저녁) 및 간식).xlsx')
+ws=wb['조리지시서(1월 2일~14일)']
 
-
-# for i in len(g):
-#     if g[i][0]=='':
-#         g[i-1].append(g[i][1])
-        
-print(g.)
