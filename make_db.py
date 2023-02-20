@@ -40,3 +40,14 @@ def mat_list(dataframe):
                 tmp.append(i[1])
                 tmp.append(i[2].split(',')[0])
     return mat_list
+
+#def search_menu():
+#https://bohemihan.tistory.com/entry/Python-re-%ED%95%A8%EC%88%98-%EB%8D%B0%EC%9D%B4%ED%84%B0%ED%94%84%EB%A0%88%EC%9E%84-%EB%82%B4%EC%9A%A9%EB%B0%94%EA%BE%B8%EA%B8%B0-%EC%B9%98%ED%99%98  <--엑셀 데이터 찾기 관련 블로그
+
+# def check_over(): 중복 확인 함수,
+#현재 생각중인 방법: 서치를 통해 있는지 확인 하고 없으면 추가
+
+
+# def insert_list(mat_list):
+
+pprint(mat_list(df))
