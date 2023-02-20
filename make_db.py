@@ -1,4 +1,5 @@
 #기존 엑셀의 데이터 중 원하는 걸 뽑아와 새 db에 저장하는 파일
+#https://bohemihan.tistory.com/entry/Python-re-%ED%95%A8%EC%88%98-%EB%8D%B0%EC%9D%B4%ED%84%B0%ED%94%84%EB%A0%88%EC%9E%84-%EB%82%B4%EC%9A%A9%EB%B0%94%EA%BE%B8%EA%B8%B0-%EC%B9%98%ED%99%98  <--엑셀 데이터 찾기 관련 블로그
 
 
 import os
@@ -17,39 +18,25 @@ df=df.fillna('')
 
 #재료 리스트 [0]번에는 음식 이름이 저장 됨, 매개변수로는 엑셀의 fillna('')가 된 데이터 프레임을 받음
 def mat_list(dataframe):
-    # #간식 파트 제거
     a=np.array(dataframe[5:])
-    f=[]
-    sw=1
+    mat_list=[]
+    tmp=[]
     for i in a:
         if '저녁' in i[0]:
             sw=1
-            f.append(i[1:])
+            tmp.append(i[1])
+            tmp.append(i[2].split(',')[0])
         elif '간식' in i[0]:
             sw=0
+            mat_list.append(['end'])
+            tmp=[]
         elif sw==1:
-            f.append(i[1:])
-
-    # 식재료 필터링
-    g=[]
-    for i in f:
-        g.append([i[0],i[1].split(',')[0]])
-
-    #메뉴와 재료를 같은 리스트에 넣기
-    for i in range(len(g)):
-        if g[i][0]!='':
-            indx=i
-        elif g[i][0]=='':
-            if g[i][1] not in g[indx]:
-                g[indx].append(g[i][1])
-
-    #메뉴와 재료 매칭 안된 재료들은 삭제
-    mat_list=[]
-    for i in g:
-        if i[0]!='':
-            mat_list.append(i)
-
+            if i[1]=='':
+                tmp.append(i[2].split(',')[0])
+            elif i[1]!='':
+                tmp=list(dict.fromkeys(tmp)) #dict의 key는 중복을 허용 안하기 때문에 fromkey로 key값으로 바꾼다음 다시 리스트화 시킴으로써 중복을 제거 함
+                mat_list.append(tmp)
+                tmp=[]
+                tmp.append(i[1])
+                tmp.append(i[2].split(',')[0])
     return mat_list
-
-def insert_data(m_list):
-    
