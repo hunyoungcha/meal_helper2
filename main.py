@@ -21,13 +21,6 @@ def Load_snack():
 
 
 
-
-
-
-
-
-
-
 #메뉴 입력 위 라벨
 lab=tk.Label(window, text='급식 메뉴', font=20)
 lab.place(x=1,y=1)
