@@ -14,8 +14,8 @@ file_list=os.listdir(path)
 #음식명과 식재료명을 저장해 데이터프레임을 만듬
 
 
-# df = pd.read_excel(f"{path+file_list[0]}", engine = "openpyxl", sheet_name=1, usecols='B,C,D')
-# df=df.fillna('')
+df = pd.read_excel(f"{path+file_list[0]}", engine = "openpyxl", sheet_name=1, usecols='B,C,D')
+df=df.fillna('')
 
 
 #재료 리스트 [0]번에는 음식 이름이 저장 됨, 매개변수로는 엑셀의 fillna('')가 된 데이터 프레임을 받음
@@ -58,12 +58,16 @@ def append_to_excel(fpath, df, sheet_name):
 
 # a=pd.DataFrame(mat_list(df))
 # append_to_excel('files/database.xlsx', a,'new')
-q=''
-for i in file_list:
-    print(i)
-    for j in range(2):
-        df = pd.read_excel(f"{i}", engine = "openpyxl", sheet_name=j, usecols='B,C,D')
-        df.fillna('')
 
+
+
+
+
+
+
+# for i in file_list:
+#     for j in range(2):
+#         df = pd.read_excel(f"{path+i}", engine = "openpyxl", sheet_name=j, usecols='B,C,D')
+#         df.fillna('')
+        
     
-pprint(q)
