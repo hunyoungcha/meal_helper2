@@ -3,6 +3,8 @@
 
 import tkinter as tk
 from tkinter import filedialog
+from tkinter import ttk
+from db_con import search_menu
 
 
 window=tk.Tk()
@@ -63,6 +65,19 @@ file_name_lab.place(x=180,y=280)
 #파일명 텍스트 박스
 file_name_text=tk.Text(window,width=20,height=1,font=30)
 file_name_text.place(x=180, y=300)
+
+
+#변경 사항 라벨
+comblab=tk.Label(window,text='변경 사항', font=20)
+comblab.place(x=420,y=230)
+
+
+#변경 사항 콤보박스
+combolist=['1번항목','2번항목','3번항목']
+combobox=ttk.Combobox(window)
+combobox.config(width=30)
+combobox.config(values=combolist)
+combobox.place(x=420,y=255)
 
 
 window.mainloop()

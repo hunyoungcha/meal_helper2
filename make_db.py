@@ -1,5 +1,5 @@
 #기존 엑셀의 데이터 중 원하는 걸 뽑아와 새 db에 저장하는 파일
-#https://bohemihan.tistory.com/entry/Python-re-%ED%95%A8%EC%88%98-%EB%8D%B0%EC%9D%B4%ED%84%B0%ED%94%84%EB%A0%88%EC%9E%84-%EB%82%B4%EC%9A%A9%EB%B0%94%EA%BE%B8%EA%B8%B0-%EC%B9%98%ED%99%98  <--엑셀 데이터 찾기 관련 블로그
+
 
 
 import os
@@ -45,24 +45,29 @@ def mat_list(dataframe):
                 value.append(i[2].split(',')[0])
     return mat_list
 
-#def search_menu():
-#https://bohemihan.tistory.com/entry/Python-re-%ED%95%A8%EC%88%98-%EB%8D%B0%EC%9D%B4%ED%84%B0%ED%94%84%EB%A0%88%EC%9E%84-%EB%82%B4%EC%9A%A9%EB%B0%94%EA%BE%B8%EA%B8%B0-%EC%B9%98%ED%99%98  <--엑셀 데이터 찾기 관련 블로그
 
-def make_db():
+def make_dict():
     fin_dict={}
     for file in file_list:
         for sheet in range(2):
             df=pd.read_excel(f"{path+file}", engine = "openpyxl", sheet_name=sheet, usecols='B,C,D')
             df=df.fillna('')
             fin_dict.update(mat_list(df))
+            print(f'#########{file}의 {sheet}번째 완성#########')
+    print('#########리스트 만들기 완성#########')
+    return fin_dict
 
-
+def to_xls(fin_dict):
     wb=load_workbook('files/database.xlsx')
     ws=wb['database']
-
+    ws.cell(row=1,column=1,value='menu')
+    ws.cell(row=1,column=2,value='mat')
+    print('######### 리스트 --> 엑셀 #########')
     for row,(key,value) in enumerate(fin_dict.items()):
-        ws.cell(row=row+1,column=1,value=key)
-        ws.cell(row=row+1,column=2,value=value)
+        ws.cell(row=row+2,column=1,value=key)
+        ws.cell(row=row+2,column=2,value=value)
     wb.save('files/database.xlsx')
+    print('------성공------')
 
-make_db()
+
+to_xls(make_dict())
