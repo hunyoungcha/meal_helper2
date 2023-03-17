@@ -4,7 +4,7 @@
 import tkinter as tk
 from tkinter import filedialog
 from tkinter import ttk
-from db_con import search_menu
+
 
 
 window=tk.Tk()
@@ -73,9 +73,9 @@ comblab.place(x=420,y=230)
 
 
 #변경 사항 콤보박스
-combolist=['1번항목','2번항목','3번항목']
+combolist=['아동선호도에 따라 급, 간식 추가 및 변경함.','재료수급으로 메뉴, 간식 변경함','아동센터 행사로 인하여 메뉴 변경함.']
 combobox=ttk.Combobox(window)
-combobox.config(width=30)
+combobox.config(width=45)
 combobox.config(values=combolist)
 combobox.place(x=420,y=255)
 
